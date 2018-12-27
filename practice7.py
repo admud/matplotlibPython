@@ -1,15 +1,21 @@
 import matplotlib.pyplot as plt
-import csv
 import numpy as np
+import urllib
+import matplotlib.dates as mdates
 
+def graph_data(stock):
 
-x,y = np.loadtxt('example.txt', delimiter = ',', unpack = True)
+  stock_price_url = 'https://pythonprogramming.net/yahoo_finance_replacement'
 
-plt.plot(x,y, label = 'loaded from file with numpy')
+  source_code = urllib.request.urlopen(stock_price_url).read().decode()
 
+  stock_data = []
+  split_source = source_code.split('\n')
 
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('cool graph')
-plt.legend()
-plt.show()
+  plt.xlabel('x')
+  plt.ylabel('y')
+  plt.title('cool graph')
+  plt.legend()
+  plt.show()
+
+graph_data('TSLA')
